@@ -76,14 +76,17 @@ def print_report(stats, extremes, month_data, hottest):
     print("-" * 30)
     print(f"{date}: {weather['Temperature']}°C, {weather['Humidity']}% humidity")
 
+def main():
+    print("Generating fake weather data...")
+    time.sleep(1)
 
-print("Generating fake weather data...")
-time.sleep(1)
+    temp, humidity = generate_data()
+    stats = compute_stats(temp, humidity)
+    extremes = count_extremes(temp, humidity)
+    month_data = build_month_data(temp, humidity)
+    hottest = find_hottest_day(month_data)
 
-temp, humidity = generate_data()
-stats = compute_stats(temp, humidity)
-extremes = count_extremes(temp, humidity)
-month_data = build_month_data(temp, humidity)
-hottest = find_hottest_day(month_data)
+    print_report(stats, extremes, month_data, hottest)
 
-print_report(stats, extremes, month_data, hottest)
+if __name__ == "__main__":
+    main()
